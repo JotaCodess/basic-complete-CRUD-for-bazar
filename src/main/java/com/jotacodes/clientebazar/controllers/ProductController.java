@@ -33,8 +33,7 @@ public class ProductController {
     }
 
     @GetMapping("/outstock")
-    public List<Product> productLessFive(){  
-        
+    public List<Product> productLessFive(){   
         return repository.findAll().stream()
         .filter(p -> p.getQuantityAvaible() < 5)
         .collect(Collectors.toList());

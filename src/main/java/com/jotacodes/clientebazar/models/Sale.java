@@ -15,17 +15,19 @@ public class Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long saleCode;
+    Long id;
 
     @ManyToMany
-    List<Product> products;
+    private List<Product> products;
     
     @ManyToOne
     @JoinColumn(name = "id_client")
     Client client;
     
-    LocalDate saleDate;
-    Double total;
+    private LocalDate saleDate;
+    private Double total;
+    private String saleCode;
+    
 
 
     public List<Product> getProducts() {
@@ -40,11 +42,11 @@ public class Sale {
     public void setClient(Client client) {
         this.client = client;
     }
-    public Long getSaleCode() {
-        return saleCode;
+    public Long getId() {
+        return id;
     }
-    public void setSaleCode(Long saleCode) {
-        this.saleCode = saleCode;
+    public void setId(Long saleCode) {
+        this.id = saleCode;
     }
     public LocalDate getSaleDate() {
         return saleDate;
@@ -57,6 +59,16 @@ public class Sale {
     }
     public void setTotal(Double total) {
         this.total = total;
+    }
+    public Object getCustomer() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCustomer'");
+    }
+    public String getSaleCode() {
+        return saleCode;
+    }
+    public void setSaleCode(String saleCode) {
+        this.saleCode = saleCode;
     }
 
     
