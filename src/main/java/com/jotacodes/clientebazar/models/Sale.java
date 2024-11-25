@@ -27,9 +27,8 @@ public class Sale {
     private LocalDate saleDate;
     private Double total;
     private String saleCode;
+
     
-
-
     public List<Product> getProducts() {
         return products;
     }
@@ -60,17 +59,10 @@ public class Sale {
     public void setTotal(Double total) {
         this.total = total;
     }
-    public Object getCustomer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCustomer'");
-    }
     public String getSaleCode() {
         return saleCode;
     }
     public void setSaleCode(String saleCode) {
         this.saleCode = saleCode;
     }
-
-    
-
 }

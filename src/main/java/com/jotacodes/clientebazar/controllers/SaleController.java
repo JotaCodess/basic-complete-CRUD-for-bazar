@@ -32,13 +32,13 @@ public class SaleController {
 
     @GetMapping("/higher_sale")
     public ResponseEntity<SaleHighestDto> getSaleWithHighestAmount() {
-        // Obtener la venta con el monto más alto
+        
         Optional<Sale> highestSale = repository.findFirstByOrderByTotalAmountDesc();
 
         if (highestSale.isPresent()) {
             Sale sale = highestSale.get();
 
-            // Crear el DTO con la información de la venta
+            
             SaleHighestDto saleDTO = new SaleHighestDto(
                 sale.getSaleCode(),
                 sale.getTotal(),
@@ -49,7 +49,7 @@ public class SaleController {
 
             return new ResponseEntity<>(saleDTO, HttpStatus.OK);
         } else {
-            // Si no hay ventas, devolver un 404
+            
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
