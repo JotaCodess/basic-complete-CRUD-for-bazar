@@ -1,6 +1,8 @@
 package com.jotacodes.clientebazar.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +22,22 @@ import com.jotacodes.clientebazar.repositories.IProductRepository;
 @RequestMapping("/products")
 public class ProductController {
 
+    List<Product> products = new ArrayList<>();
+
     @Autowired
     IProductRepository repository;
 
     @GetMapping
     public List<Product> listProducts(){
         return repository.findAll();
+    }
+
+    @GetMapping("/outstock")
+    public List<Product> productLessFive(){  
+        
+        return repository.findAll().stream()
+        .filter(p -> p.getQuantityAvaible() < 5)
+        .collect(Collectors.toList());
     }
 
     @PostMapping("/create")

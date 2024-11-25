@@ -32,14 +32,21 @@ public class SaleController {
         return repository.save(sale);
     }
 
-    @PutMapping("update/{idClient}")
+     @GetMapping("/{idSale}")
+    public ResponseEntity<Sale> obtainProductById(@PathVariable Long idSale){
+        return repository.findById(idSale)
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("update/{idSale}")
     public ResponseEntity<?> editSale(@PathVariable Long idSale, @RequestBody Sale saleDetails){
-        return repository.findById(idSale).map(sal->{
-            sal.setClient(saleDetails.getClient());
-            sal.setSaleCode(saleDetails.getSaleCode());
-            sal.setSaleDate(saleDetails.getSaleDate());
-            sal.setTotal(saleDetails.getTotal());
-            Sale saleUpdated = repository.save(sal);
+        return repository.findById(idSale).map(sale->{
+            sale.setClient(saleDetails.getClient());
+            sale.setSaleCode(saleDetails.getSaleCode());
+            sale.setSaleDate(saleDetails.getSaleDate());
+            sale.setTotal(saleDetails.getTotal());
+            Sale saleUpdated = repository.save(sale);
             return ResponseEntity.ok(saleUpdated);
         }).orElse(ResponseEntity.notFound().build());
     }

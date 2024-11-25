@@ -32,6 +32,13 @@ public class ClientController {
         return repository.save(client);
     }
 
+       @GetMapping("/{idClient}")
+    public ResponseEntity<Client> obtainProductById(@PathVariable Long idClient){
+        return repository.findById(idClient)
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
+    }
+
     @PutMapping("update/{idClient}")
     public ResponseEntity<?> editClient(@PathVariable Long idClient, @RequestBody Client clientDetails){
         return repository.findById(idClient).map(clien->{
